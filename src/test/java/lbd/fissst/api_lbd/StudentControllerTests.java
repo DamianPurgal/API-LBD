@@ -3,7 +3,6 @@ package lbd.fissst.api_lbd;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lbd.fissst.api_lbd.DTO.student.StudentAddDTO;
 import lbd.fissst.api_lbd.DTO.student.StudentUpdateDTO;
-import lbd.fissst.api_lbd.entity.Student;
 import lbd.fissst.api_lbd.entity.enums.Subject;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.Test;
@@ -64,7 +63,7 @@ public class StudentControllerTests {
     }
 
     @Test
-    void updateStudent() throws Exception {
+    void editStudent() throws Exception {
         StudentUpdateDTO studentUpdateDTO = StudentUpdateDTO.builder()
                 .age(12)
                 .lastName("Kamil")

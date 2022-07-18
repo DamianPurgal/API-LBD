@@ -3,7 +3,6 @@ package lbd.fissst.api_lbd.service.implementation;
 import lbd.fissst.api_lbd.entity.Student;
 import lbd.fissst.api_lbd.entity.Teacher;
 import lbd.fissst.api_lbd.entity.enums.Subject;
-import lbd.fissst.api_lbd.service.definition.StudentService;
 import lbd.fissst.api_lbd.service.definition.TeacherService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
