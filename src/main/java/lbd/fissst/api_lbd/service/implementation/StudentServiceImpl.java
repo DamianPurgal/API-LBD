@@ -1,6 +1,7 @@
 package lbd.fissst.api_lbd.service.implementation;
 
 import lbd.fissst.api_lbd.entity.Student;
+import lbd.fissst.api_lbd.entity.enums.Subject;
 import lbd.fissst.api_lbd.service.definition.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -68,19 +69,94 @@ public class StudentServiceImpl implements StudentService {
     @PostConstruct
     private void addStudentsToList(){
         students.add(
-            new Student(1L, "Damian", "Purgal", 22)
+                Student.builder()
+                        .id(1L)
+                        .firstName("Damian")
+                        .lastName("Purgal")
+                        .age(22)
+                        .subjects(List.of(Subject.ALGEBRA))
+                        .build()
         );
         students.add(
-                new Student(2L, "Jan", "Kowalski", 45)
+                Student.builder()
+                        .id(2L)
+                        .firstName("Jan")
+                        .lastName("Kowalski")
+                        .age(43)
+                        .subjects(List.of(Subject.ALGEBRA))
+                        .build()
         );
         students.add(
-                new Student(3L, "Adam", "Nowak", 19)
+                Student.builder()
+                        .id(3L)
+                        .firstName("Adam")
+                        .lastName("Nowak")
+                        .age(21)
+                        .subjects(List.of(Subject.LAW))
+                        .build()
         );
         students.add(
-                new Student(4L, "Mariusz", "Pudzian", 52)
+                Student.builder()
+                        .id(4L)
+                        .firstName("Mariusz")
+                        .lastName("Pudzian")
+                        .age(51)
+                        .subjects(List.of(Subject.BIOLOGY))
+                        .build()
         );
         students.add(
-                new Student(5L, "Robert", "Lewandowski", 43)
+                Student.builder()
+                        .id(5L)
+                        .firstName("Robert")
+                        .lastName("Lewandowski")
+                        .age(43)
+                        .subjects(List.of(Subject.LAW))
+                        .build()
+        );
+        students.add(
+                Student.builder()
+                        .id(6L)
+                        .firstName("Zdzislaw")
+                        .lastName("Beksinski")
+                        .age(52)
+                        .subjects(List.of(Subject.ALGEBRA, Subject.LAW))
+                        .build()
+        );
+        students.add(
+                Student.builder()
+                        .id(7L)
+                        .firstName("Elon")
+                        .lastName("Musk")
+                        .age(55)
+                        .subjects(List.of(Subject.ALGEBRA, Subject.BIOLOGY))
+                        .build()
+        );
+        students.add(
+                Student.builder()
+                        .id(8L)
+                        .firstName("Adam")
+                        .lastName("Malysz")
+                        .age(44)
+                        .subjects(List.of(Subject.LAW, Subject.BIOLOGY))
+                        .build()
+        );
+        students.add(
+                Student.builder()
+                        .id(9L)
+                        .firstName("Magda")
+                        .lastName("Gessler")
+                        .age(87)
+                        .subjects(List.of(Subject.BIOLOGY))
+                        .build()
+        );
+        students.add(
+                Student.builder()
+                        .id(10L)
+                        .firstName("Robert")
+                        .lastName("Maklowicz")
+                        .age(19)
+                        .subjects(List.of(Subject.LAW, Subject.BIOLOGY))
+                        .build()
         );
     }
 }
