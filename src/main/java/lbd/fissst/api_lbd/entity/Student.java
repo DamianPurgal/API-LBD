@@ -17,6 +17,6 @@ public class Student {
     private String firstName;
     private String lastName;
     private Integer age;
-    private List<Subject> subjects = new ArrayList<>();
+    private List<Subject> subjects;
 
 }

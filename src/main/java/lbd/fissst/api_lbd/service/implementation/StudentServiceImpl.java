@@ -3,6 +3,7 @@ package lbd.fissst.api_lbd.service.implementation;
 import lbd.fissst.api_lbd.entity.Student;
 import lbd.fissst.api_lbd.entity.enums.Subject;
 import lbd.fissst.api_lbd.service.definition.StudentService;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Getter
 public class StudentServiceImpl implements StudentService {
 
     private final List<Student> students = new ArrayList<>();
@@ -74,7 +76,7 @@ public class StudentServiceImpl implements StudentService {
                         .firstName("Damian")
                         .lastName("Purgal")
                         .age(22)
-                        .subjects(List.of(Subject.ALGEBRA))
+                        .subjects(new ArrayList<>(List.of(Subject.ALGEBRA)))
                         .build()
         );
         students.add(
@@ -83,7 +85,7 @@ public class StudentServiceImpl implements StudentService {
                         .firstName("Jan")
                         .lastName("Kowalski")
                         .age(43)
-                        .subjects(List.of(Subject.ALGEBRA))
+                        .subjects(new ArrayList<>(List.of(Subject.ALGEBRA)))
                         .build()
         );
         students.add(
@@ -92,7 +94,7 @@ public class StudentServiceImpl implements StudentService {
                         .firstName("Adam")
                         .lastName("Nowak")
                         .age(21)
-                        .subjects(List.of(Subject.LAW))
+                        .subjects(new ArrayList<>(List.of(Subject.LAW)))
                         .build()
         );
         students.add(
@@ -101,7 +103,7 @@ public class StudentServiceImpl implements StudentService {
                         .firstName("Mariusz")
                         .lastName("Pudzian")
                         .age(51)
-                        .subjects(List.of(Subject.BIOLOGY))
+                        .subjects(new ArrayList<>(List.of(Subject.BIOLOGY)))
                         .build()
         );
         students.add(
@@ -110,7 +112,7 @@ public class StudentServiceImpl implements StudentService {
                         .firstName("Robert")
                         .lastName("Lewandowski")
                         .age(43)
-                        .subjects(List.of(Subject.LAW))
+                        .subjects(new ArrayList<>(List.of(Subject.LAW)))
                         .build()
         );
         students.add(
@@ -119,7 +121,7 @@ public class StudentServiceImpl implements StudentService {
                         .firstName("Zdzislaw")
                         .lastName("Beksinski")
                         .age(52)
-                        .subjects(List.of(Subject.ALGEBRA, Subject.LAW))
+                        .subjects(new ArrayList<>(List.of(Subject.ALGEBRA, Subject.LAW)))
                         .build()
         );
         students.add(
@@ -128,7 +130,7 @@ public class StudentServiceImpl implements StudentService {
                         .firstName("Elon")
                         .lastName("Musk")
                         .age(55)
-                        .subjects(List.of(Subject.ALGEBRA, Subject.BIOLOGY))
+                        .subjects(new ArrayList<>(List.of(Subject.ALGEBRA, Subject.BIOLOGY)))
                         .build()
         );
         students.add(
@@ -137,7 +139,7 @@ public class StudentServiceImpl implements StudentService {
                         .firstName("Adam")
                         .lastName("Malysz")
                         .age(44)
-                        .subjects(List.of(Subject.LAW, Subject.BIOLOGY))
+                        .subjects(new ArrayList<>(List.of(Subject.LAW, Subject.BIOLOGY)))
                         .build()
         );
         students.add(
@@ -146,7 +148,7 @@ public class StudentServiceImpl implements StudentService {
                         .firstName("Magda")
                         .lastName("Gessler")
                         .age(87)
-                        .subjects(List.of(Subject.BIOLOGY))
+                        .subjects(new ArrayList<>(List.of(Subject.BIOLOGY)))
                         .build()
         );
         students.add(
@@ -155,7 +157,7 @@ public class StudentServiceImpl implements StudentService {
                         .firstName("Robert")
                         .lastName("Maklowicz")
                         .age(19)
-                        .subjects(List.of(Subject.LAW, Subject.BIOLOGY))
+                        .subjects(new ArrayList<>(List.of(Subject.LAW, Subject.BIOLOGY)))
                         .build()
         );
     }
