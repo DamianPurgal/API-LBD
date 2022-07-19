@@ -1,8 +1,7 @@
 package lbd.fissst.api_lbd.security.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lbd.fissst.api_lbd.security.response.AuthorizationResponse;
 import org.springframework.http.HttpStatus;
 
 import javax.servlet.*;
@@ -26,17 +25,11 @@ public class AuthorizationTeacherFilter implements Filter {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             response.setContentType(APPLICATION_JSON_VALUE);
             new ObjectMapper().writeValue(response.getOutputStream(),
-                    new AuthorizationTeacherFilterResponse(
+                    new AuthorizationResponse(
                             "User unauthorized!"
                     )
             );
         }
-    }
-
-    @AllArgsConstructor
-    @Getter
-    private static class AuthorizationTeacherFilterResponse {
-        private String errorMessage;
     }
 
     @Override
