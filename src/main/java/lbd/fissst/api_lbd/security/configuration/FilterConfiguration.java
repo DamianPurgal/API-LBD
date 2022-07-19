@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FilterConfiguration {
 
+    /*
     @Bean
     public FilterRegistrationBean<AuthorizationStudentFilter> authorizationStudentFilter(){
         FilterRegistrationBean<AuthorizationStudentFilter> filterBean
@@ -22,6 +23,7 @@ public class FilterConfiguration {
 
         return filterBean;
     }
+     */
 
     @Bean
     public FilterRegistrationBean<ElapsedTimeFilter> elapsedTimeFilter(){
@@ -35,6 +37,7 @@ public class FilterConfiguration {
         return filterBean;
     }
 
+    /*
     @Bean
     public FilterRegistrationBean<AuthorizationTeacherFilter> authorizationTeacherFilter(){
         FilterRegistrationBean<AuthorizationTeacherFilter> filterBean
@@ -47,4 +50,5 @@ public class FilterConfiguration {
 
         return filterBean;
     }
+    */
 }
