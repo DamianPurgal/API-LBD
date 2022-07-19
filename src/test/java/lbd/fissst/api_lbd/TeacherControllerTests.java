@@ -24,7 +24,9 @@ public class TeacherControllerTests {
 
     @Test
     public void getTeacher() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/teacher/{id}", 1))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/teacher/{id}", 1)
+                        .header("role", "TEACHER_ROLE")
+                )
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$").isNotEmpty())
@@ -33,7 +35,9 @@ public class TeacherControllerTests {
 
     @Test
     public void getTeacherClass() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/teacher/{id}/class/student", 2))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/teacher/{id}/class/student", 2)
+                        .header("role", "TEACHER_ROLE")
+                )
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$").isArray())
@@ -52,6 +56,7 @@ public class TeacherControllerTests {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/teacher")
                         .content(asJsonString(teacherAddDTO))
                         .contentType(MediaType.APPLICATION_JSON)
+                        .header("role", "TEACHER_ROLE")
                 )
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -61,36 +66,43 @@ public class TeacherControllerTests {
 
     @Test
     public void deleteTeacher() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/teacher/{id}", 3))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/teacher/{id}", 3)
+                        .header("role", "TEACHER_ROLE")
+                )
                 .andExpect(status().isOk());
     }
 
     @Test
     public void deleteNotExistingTeacher() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/teacher/{id}", 50))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/teacher/{id}", 50)
+                        .header("role", "TEACHER_ROLE")
+                )
                 .andExpect(status().isNotFound());
     }
 
     @Test
     public void deleteStudentFromClassByTeacherId() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/teacher/{teacherId}/class/student/{studentId}", 2, 5))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/teacher/{teacherId}/class/student/{studentId}", 2, 5)
+                        .header("role", "TEACHER_ROLE")
+                )
                 .andExpect(status().isOk());
     }
 
     @Test
     public void deleteNotExistingStudentFromClassByTeacherId() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/teacher/{teacherId}/class/student/{studentId}", 2, 50))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/teacher/{teacherId}/class/student/{studentId}", 2, 50)
+                        .header("role", "TEACHER_ROLE")
+                )
                 .andExpect(status().isNotFound());
     }
 
     @Test
     public void deleteStudentFromClassByNotExistingTeacherId() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/teacher/{teacherId}/class/student/{studentId}", 50, 2))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/teacher/{teacherId}/class/student/{studentId}", 50, 2)
+                        .header("role", "TEACHER_ROLE")
+                )
                 .andExpect(status().isNotFound());
     }
-
-
-
 
     public static String asJsonString(final Object obj) {
         try {

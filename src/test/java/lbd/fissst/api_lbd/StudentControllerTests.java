@@ -27,7 +27,9 @@ public class StudentControllerTests {
 
     @Test
     void getAllStudents() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/student"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/student")
+                        .header("role", "STUDENT_ROLE")
+                )
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$").isArray())
@@ -36,7 +38,9 @@ public class StudentControllerTests {
 
     @Test
     void getStudent() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/student/{id}", 1))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/student/{id}", 1)
+                        .header("role", "STUDENT_ROLE")
+                )
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$").isNotEmpty())
@@ -55,6 +59,7 @@ public class StudentControllerTests {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/student")
                         .content(asJsonString(studentToAdd))
                         .contentType(MediaType.APPLICATION_JSON)
+                        .header("role", "STUDENT_ROLE")
                 )
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -72,6 +77,7 @@ public class StudentControllerTests {
         mockMvc.perform(MockMvcRequestBuilders.put("/api/student/{id}", 2)
                         .content(asJsonString(studentUpdateDTO))
                         .contentType(MediaType.APPLICATION_JSON)
+                        .header("role", "STUDENT_ROLE")
                 )
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -82,7 +88,9 @@ public class StudentControllerTests {
 
     @Test
     void deleteStudent() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/student/{id}", 10))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/student/{id}", 10)
+                        .header("role", "STUDENT_ROLE")
+                )
                 .andExpect(status().isOk());
     }
 
