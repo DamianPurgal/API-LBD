@@ -11,7 +11,6 @@ import lombok.AllArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -28,111 +27,57 @@ public class TeacherController {
 
     @GetMapping("/{id}")
     public ResponseEntity<TeacherDTO> getTeacher(@PathVariable("id") Long id){
-        try{
-            TeacherDTO result = teacherMapper.mapTeacherToTeacherDTO(
-                    teacherService.getTeacher(id));
-
-            return ResponseEntity.ok()
-                    .header("successful", "true")
-                    .body(result);
-
-        }catch(ResponseStatusException exception){
-            return ResponseEntity.status(exception.getStatus())
-                    .header("successful", "false")
-                    .build();
-        }catch(Exception exception){
-            return ResponseEntity.internalServerError()
-                    .header("successful", "false")
-                    .build();
-        }
+        return ResponseEntity.ok()
+                .header("successful", "true")
+                .body(
+                        teacherMapper.mapTeacherToTeacherDTO(
+                                teacherService.getTeacher(id)
+                        )
+                );
     }
 
     @GetMapping("/{id}/class/student")
     public ResponseEntity<List<StudentDTO>> getTeacherClass(@PathVariable Long id){
-        try{
-            List<StudentDTO> result = teacherService.getTeacherClass(id)
-                    .stream()
-                    .map(studentMapper::mapStudentToStudentDTO)
-                    .toList();
-
-            return ResponseEntity.ok()
-                    .header("successful", "true")
-                    .body(result);
-
-        }catch(ResponseStatusException exception){
-            return ResponseEntity.status(exception.getStatus())
-                    .header("successful", "false")
-                    .build();
-        }catch(Exception exception){
-            return ResponseEntity.internalServerError()
-                    .header("successful", "false")
-                    .build();
-        }
+        return ResponseEntity.ok()
+                .header("successful", "true")
+                .body(
+                        teacherService.getTeacherClass(id)
+                                .stream()
+                                .map(studentMapper::mapStudentToStudentDTO)
+                                .toList()
+                );
     }
 
     @PostMapping
     public ResponseEntity<TeacherDTO> addTeacher(@RequestBody TeacherAddDTO  teacherAddDTO){
         Teacher teacherToAdd = teacherMapper.mapTeacherAddDTOToTeacher(teacherAddDTO);
-        try{
-            TeacherDTO result = teacherMapper.mapTeacherToTeacherDTO(
-                    teacherService.addTeacher(teacherToAdd));
 
-            return ResponseEntity.ok()
-                    .header("successful", "true")
-                    .body(result);
-
-        }catch(ResponseStatusException exception){
-            return ResponseEntity.status(exception.getStatus())
-                    .header("successful", "false")
-                    .build();
-        }catch(Exception exception){
-            return ResponseEntity.internalServerError()
-                    .header("successful", "false")
-                    .build();
-        }
-
+        return ResponseEntity.ok()
+                .header("successful", "true")
+                .body(
+                        teacherMapper.mapTeacherToTeacherDTO(
+                                teacherService.addTeacher(teacherToAdd)
+                        )
+                );
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTeacher(@PathVariable Long id){
-        try{
-            teacherService.deleteTeacher(id);
+        teacherService.deleteTeacher(id);
 
-            return ResponseEntity.ok()
-                    .header("successful", "true")
-                    .build();
-
-        }catch(ResponseStatusException exception){
-            return ResponseEntity.status(exception.getStatus())
-                    .header("successful", "false")
-                    .build();
-        }catch(Exception exception){
-            return ResponseEntity.internalServerError()
-                    .header("successful", "false")
-                    .build();
-        }
+        return ResponseEntity.ok()
+                .header("successful", "true")
+                .build();
     }
 
     @DeleteMapping("/{teacherId}/class/student/{studentId}")
     public ResponseEntity<Void> deleteStudentFromClassByTeacherId(@PathVariable("teacherId") Long teacherId,
                                                                     @PathVariable("studentId") Long studentId){
-        try{
-            teacherService.deleteStudentFromClassByTeacherId(studentId, teacherId);
+        teacherService.deleteStudentFromClassByTeacherId(studentId, teacherId);
 
-            return ResponseEntity.ok()
-                    .header("successful", "true")
-                    .build();
-
-        }catch(ResponseStatusException exception){
-            return ResponseEntity.status(exception.getStatus())
-                    .header("successful", "false")
-                    .build();
-        }catch(Exception exception){
-            return ResponseEntity.internalServerError()
-                    .header("successful", "false")
-                    .build();
-        }
-
+        return ResponseEntity.ok()
+                .header("successful", "true")
+                .build();
     }
 
 }

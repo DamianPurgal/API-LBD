@@ -2,11 +2,10 @@ package lbd.fissst.api_lbd.service.implementation;
 
 import lbd.fissst.api_lbd.entity.Student;
 import lbd.fissst.api_lbd.entity.enums.Subject;
+import lbd.fissst.api_lbd.exception.StudentNotFoundException;
 import lbd.fissst.api_lbd.service.definition.StudentService;
 import lombok.Getter;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -64,7 +63,7 @@ public class StudentServiceImpl implements StudentService {
                 .filter(s -> s.getId().equals(id))
                 .findFirst()
                 .orElseThrow(
-                        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found")
+                        StudentNotFoundException::new
                 );
     }
 

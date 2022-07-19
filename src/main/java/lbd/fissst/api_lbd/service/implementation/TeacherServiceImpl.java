@@ -3,6 +3,8 @@ package lbd.fissst.api_lbd.service.implementation;
 import lbd.fissst.api_lbd.entity.Student;
 import lbd.fissst.api_lbd.entity.Teacher;
 import lbd.fissst.api_lbd.entity.enums.Subject;
+import lbd.fissst.api_lbd.exception.StudentNotFoundException;
+import lbd.fissst.api_lbd.exception.TeacherNotFoundException;
 import lbd.fissst.api_lbd.service.definition.TeacherService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -71,7 +73,7 @@ public class TeacherServiceImpl implements TeacherService {
                 .filter(s -> s.getId().equals(studentId))
                 .findFirst()
                 .orElseThrow(
-                        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found")
+                        StudentNotFoundException::new
                 );
 
         student.getSubjects().remove(subjectOfTeacher);
@@ -82,7 +84,7 @@ public class TeacherServiceImpl implements TeacherService {
                 .filter(t -> t.getId().equals(id))
                 .findFirst()
                 .orElseThrow(
-                        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Teacher not found")
+                        TeacherNotFoundException::new
                 );
     }
 
