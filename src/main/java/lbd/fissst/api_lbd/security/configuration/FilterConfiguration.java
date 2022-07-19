@@ -1,6 +1,7 @@
 package lbd.fissst.api_lbd.security.configuration;
 
 import lbd.fissst.api_lbd.security.filter.AuthorizationStudentFilter;
+import lbd.fissst.api_lbd.security.filter.ElapsedTimeFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,18 @@ public class FilterConfiguration {
         filterBean.setName("AuthorizationStudentFilter");
         filterBean.addUrlPatterns("/api/student/*");
         filterBean.setFilter(new AuthorizationStudentFilter());
+        filterBean.setOrder(2);
+
+        return filterBean;
+    }
+
+    @Bean
+    public FilterRegistrationBean<ElapsedTimeFilter> elapsedTimeFilter(){
+        FilterRegistrationBean<ElapsedTimeFilter> filterBean
+                = new FilterRegistrationBean<>();
+
+        filterBean.setName("ElapsedTimeFilter");
+        filterBean.setFilter(new ElapsedTimeFilter());
         filterBean.setOrder(1);
 
         return filterBean;
